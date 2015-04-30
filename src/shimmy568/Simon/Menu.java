@@ -41,7 +41,6 @@ public class Menu extends BasicGameState{
 		
 		
 		
-		//System.out.println(g.getFont().getHeight("NEW HIGHSCORE") + " " + g.getFont().getWidth("NEW HIGHSCORE"));
 		
 		//Draws the text 
 		Game.f2.drawString(154, 30, "Simon");

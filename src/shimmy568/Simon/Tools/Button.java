@@ -22,7 +22,7 @@ public class Button {
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}catch(RuntimeException e){
-			System.out.println("Images were not found if not ment for play buttons this is an error"); //remove
+			
 		}
 		
 	}

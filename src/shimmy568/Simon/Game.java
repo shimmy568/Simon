@@ -26,13 +26,6 @@ public class Game extends StateBasedGame {
 
 	//this starts the game and sets things like screen size and fps
 	public static void main(String[] args) {
-//		scoreList = new Score[10];
-//		for(int i = 0; i < 10; i++){
-//			scoreList[i] = new Score();
-//			scoreList[i].score = 1;
-//			scoreList[i].name = "bot";
-//		}
-//		save();
 		
 		load();
 		AppGameContainer appgc;
@@ -59,13 +52,20 @@ public class Game extends StateBasedGame {
 	//a method to load the highscores at the start of the game
 	private static void load() {
 		try {
-			FileInputStream fileIn = new FileInputStream("src/res/save/highscores.ser");
+			FileInputStream fileIn = new FileInputStream("highscores.ser");
 			ObjectInputStream in = new ObjectInputStream(fileIn);
 			scoreList = (Score[]) in.readObject();
 			in.close();
 			fileIn.close();
 		} catch (IOException i) {
 			i.printStackTrace();
+			scoreList = new Score[10];
+			for(int i1 = 0; i1 < 10; i1++){
+				scoreList[i1] = new Score();
+				scoreList[i1].score = 1;
+				scoreList[i1].name = "bot";
+			}
+			save();
 			return;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -76,12 +76,11 @@ public class Game extends StateBasedGame {
 	public static void save() {
 		try {
 			FileOutputStream fileOut = new FileOutputStream(
-					"res/save/highscores.ser");
+					"highscores.ser");
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
 			out.writeObject(scoreList);
 			out.close();
 			fileOut.close();
-			System.out.printf("Scores have been saved");
 		} catch (IOException i) {
 			i.printStackTrace();
 		}
